@@ -4,6 +4,7 @@ export default () => {
   return (
     <div>
       <div>Name</div>
+      <div />
     </div>
   )
 }
