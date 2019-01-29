@@ -1,8 +1,7 @@
 import React from 'react'
 import ProgressStepComponent from './ProgressStepComponent'
 import styled from 'styled-components'
-
-const COLOR_ACTIVE = '#5132da';
+import {COLOR_ACTIVE, COLOR_DEFAULT} from "./PropgressContants";
 
 const Progress = styled.div`
   display: flex;
@@ -15,7 +14,7 @@ const LinkBettweenSteps = styled.div`
   width: auto;
   height: 10px;
   flex: 1;
-  background-color: ${props => props.complete ? COLOR_ACTIVE : 'gray'}
+  background-color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT}
 `;
 
 const Step = styled.div`

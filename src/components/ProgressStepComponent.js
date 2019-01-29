@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-
-const COLOR_ACTIVE = '#5132da';
+import {COLOR_ACTIVE, COLOR_DEFAULT} from "./PropgressContants";
 
 const StatusBar = styled.div`
-  border: 10px solid ${COLOR_ACTIVE};
+  border: 10px solid ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT };
   border-radius: 50%;
   background-color: white;
   width: 30px;
@@ -18,16 +17,16 @@ const ProgressStep = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${COLOR_ACTIVE};
+  color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT};
   font-size: 20px;
   
 `;
 
-export default () => {
+export default (props) => {
   return (
     <ProgressStep>
-      <Title>Name</Title>
-      <StatusBar />
+      <Title complete={props.complete}>{props.title}</Title>
+      <StatusBar complete={props.complete}/>
     </ProgressStep>
   )
 }
