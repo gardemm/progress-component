@@ -51,7 +51,7 @@ class ProgressComponent extends React.Component {
     let linksBetweenSteps = [];
     tasks.forEach((task, index) => {
       if (index > 0) {
-        linksBetweenSteps.push(<LinkBettweenSteps complete={task.complete}/>)
+        linksBetweenSteps.push(<LinkBettweenSteps complete={task.complete} key={'LinksBT' + index}/>)
       }
       steps.push(
         <Step key={index.toString()}>
