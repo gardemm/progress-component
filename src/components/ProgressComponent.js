@@ -8,6 +8,7 @@ const Progress = styled.div`
   position: relative;
   width: 400px;
   justify-content: space-between;
+  align-items: flex-end;
 `;
 
 const LinkBettweenSteps = styled.div`
@@ -24,7 +25,7 @@ const Step = styled.div`
 const Background = styled.div`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 47px;
   display: flex;
   align-items: center;
 `;
