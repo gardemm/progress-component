@@ -3,16 +3,23 @@ import styled from 'styled-components'
 import {COLOR_ACTIVE, COLOR_DEFAULT} from "./PropgressContants";
 
 const ProgressStep = styled.div`
+  position: absolute;
+  left: -166%;
+  bottom: -17px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
+  justify-content: center;
   align-items: center;
   z-index: 2;
+  width: 100px;
 `;
 
 const Title = styled.div`
   color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT};
-  font-size: 20px;
-  
+  font-size: 25px;
+  text-align: center;
+  padding-bottom: 24px;
+  font-weight: bold;
 `;
 
 const StatusBar = styled.div`

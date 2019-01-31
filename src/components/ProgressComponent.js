@@ -1,20 +1,39 @@
 import React from 'react'
-import ProgressStepComponent from './ProgressStepComponent'
 import styled from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import {COLOR_ACTIVE, COLOR_DEFAULT} from "./PropgressContants";
+import ProgressStepComponent from "./ProgressStepComponent";
+
+
+const PADDING_SIZE = '100px';
+
+const GlobalStyle = createGlobalStyle`
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  #root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 const Progress = styled.div`
   display: flex;
-  position: relative;
-  width: 400px;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
+  padding: ${PADDING_SIZE} ${PADDING_SIZE} 0;  
 `;
 
 const LinkBettweenSteps = styled.div`
-  width: auto;
+  width: 100px;
   height: 10px;
-  flex: 1;
   background-color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT}
 `;
 
@@ -22,25 +41,32 @@ const Step = styled.div`
   display: flex;
 `;
 
-const Background = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 47px;
-  display: flex;
-  align-items: center;
+
+const Point = styled.div`
+  position: relative;
+  width: 23px;
+  background-color: black;
 `;
 
 const tasks = [
   {
-    title: 'Design',
+    title: 'Protect',
     complete: true,
   },
   {
-    title: 'Build',
+    title: 'Compile',
+    complete: true,
+  },
+  {
+    title: 'Discover',
     complete: false,
   },
   {
-    title: 'Launch',
+    title: 'Update',
+    complete: false,
+  },
+  {
+    title: 'Finish more results',
     complete: false,
   },
 ];
@@ -49,17 +75,20 @@ class ProgressComponent extends React.Component {
 
   render() {
     let steps = [];
-    let linksBetweenSteps = [];
     tasks.forEach((task, index) => {
+      let linkBetweenSteps = null;
       if (index > 0) {
-        linksBetweenSteps.push(<LinkBettweenSteps complete={task.complete} key={'LinksBT' + index}/>)
+        linkBetweenSteps = <LinkBettweenSteps complete={task.complete}/>
       }
       steps.push(
         <Step key={index.toString()}>
-          <ProgressStepComponent
-            title={task.title}
-            complete={task.complete}
-          />
+          {linkBetweenSteps}
+          <Point >
+            <ProgressStepComponent
+              title={task.title}
+              complete={task.complete}
+            />
+          </Point>
         </Step>
       )
       }
@@ -67,9 +96,7 @@ class ProgressComponent extends React.Component {
 
     return (
       <Progress>
-        <Background>
-          {linksBetweenSteps}
-        </Background>
+        <GlobalStyle />
         {steps}
       </Progress>
     )
