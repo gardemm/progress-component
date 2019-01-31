@@ -45,6 +45,7 @@ const Step = styled.div`
 const Point = styled.div`
   position: relative;
   width: 23px;
+  height: 10px;
   background-color: black;
 `;
 
