@@ -2,6 +2,7 @@ export const COLOR_ACTIVE = '#5132da';
 export const COLOR_DEFAULT = '#DBDBDB';
 
 export const PROGRESS_WRAPPER_PADDING_SIZE = '100px';
+
 export const LINK_BETTWEEN_STEPS_WIDTH = PROGRESS_WRAPPER_PADDING_SIZE;
 export const LINK_BETTWEEN_STEPS_HEIGHT = '10px';
 
