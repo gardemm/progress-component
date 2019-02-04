@@ -7,8 +7,6 @@ import {
   LINK_BETTWEEN_STEPS_HEIGHT,
   LINK_BETTWEEN_STEPS_WIDTH,
   PROGRESS_WRAPPER_PADDING_SIZE,
-  POINT_HEIGHT,
-  POINT_WIDTH
 } from "./ProgressConstants";
 import ProgressStepComponent from "./ProgressStepComponent";
 import tasks from './tasks';
@@ -43,12 +41,6 @@ const LinkBettweenSteps = styled.div`
   background-color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT}
 `;
 
-const Point = styled.div`
-  position: relative;
-  width: ${POINT_WIDTH};
-  height: ${POINT_HEIGHT};
-`;
-
 class ProgressComponent extends React.Component {
 
   render() {
@@ -61,12 +53,10 @@ class ProgressComponent extends React.Component {
       steps.push(
         <Fragment key={index.toString()}>
           {linkBetweenSteps}
-          <Point >
-            <ProgressStepComponent
-              title={task.title}
-              complete={task.complete}
-            />
-          </Point>
+          <ProgressStepComponent
+            title={task.title}
+            complete={task.complete}
+          />
         </Fragment>
       )
       }
