@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import {
@@ -11,6 +11,7 @@ import {
   POINT_WIDTH
 } from "./ProgressConstants";
 import ProgressStepComponent from "./ProgressStepComponent";
+import tasks from './tasks';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -42,39 +43,11 @@ const LinkBettweenSteps = styled.div`
   background-color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT}
 `;
 
-const Step = styled.div`
-  display: flex;
-`;
-
-
 const Point = styled.div`
   position: relative;
   width: ${POINT_WIDTH};
   height: ${POINT_HEIGHT};
 `;
-
-const tasks = [
-  {
-    title: 'Protect',
-    complete: true,
-  },
-  {
-    title: 'Compile',
-    complete: true,
-  },
-  {
-    title: 'Discover',
-    complete: false,
-  },
-  {
-    title: 'Update',
-    complete: false,
-  },
-  {
-    title: 'Finish more results',
-    complete: false,
-  },
-];
 
 class ProgressComponent extends React.Component {
 
@@ -86,7 +59,7 @@ class ProgressComponent extends React.Component {
         linkBetweenSteps = <LinkBettweenSteps complete={task.complete}/>
       }
       steps.push(
-        <Step key={index.toString()}>
+        <Fragment key={index.toString()}>
           {linkBetweenSteps}
           <Point >
             <ProgressStepComponent
@@ -94,7 +67,7 @@ class ProgressComponent extends React.Component {
               complete={task.complete}
             />
           </Point>
-        </Step>
+        </Fragment>
       )
       }
     );
