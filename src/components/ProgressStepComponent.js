@@ -1,6 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import {COLOR_ACTIVE, COLOR_DEFAULT} from "./ProgressConstants";
+import {
+  COLOR_ACTIVE,
+  COLOR_DEFAULT,
+  LINK_BETTWEEN_STEPS_WIDTH,
+  STATUS_CIRCLE_WIDTH,
+  TITLE_FONT_SIZE,
+  TITLE_PADDING_BOTTOM
+} from "./ProgressConstants";
 
 const ProgressStep = styled.div`
   position: absolute;
@@ -11,30 +18,30 @@ const ProgressStep = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
-  width: 100px;
+  width: ${LINK_BETTWEEN_STEPS_WIDTH};
 `;
 
 const Title = styled.div`
   color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT};
-  font-size: 25px;
+  font-size: ${TITLE_FONT_SIZE};
   text-align: center;
-  padding-bottom: 24px;
+  padding-bottom: ${TITLE_PADDING_BOTTOM};
   font-weight: bold;
 `;
 
-const StatusBar = styled.div`
+const StatusCircle = styled.div`
   border: 10px solid ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT };
   border-radius: 50%;
   background-color: white;
-  width: 25px;
-  height: 25px; 
+  width: ${STATUS_CIRCLE_WIDTH};
+  height: ${STATUS_CIRCLE_WIDTH}; 
 `;
 
 export default (props) => {
   return (
     <ProgressStep>
       <Title complete={props.complete}>{props.title}</Title>
-      <StatusBar complete={props.complete}/>
+      <StatusCircle complete={props.complete}/>
     </ProgressStep>
   )
 }

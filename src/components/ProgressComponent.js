@@ -1,11 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import {COLOR_ACTIVE, COLOR_DEFAULT} from "./ProgressConstants";
+import {
+  COLOR_ACTIVE,
+  COLOR_DEFAULT,
+  LINK_BETTWEEN_STEPS_HEIGHT,
+  LINK_BETTWEEN_STEPS_WIDTH,
+  PROGRESS_WRAPPER_PADDING_SIZE,
+  POINT_HEIGHT,
+  POINT_WIDTH
+} from "./ProgressConstants";
 import ProgressStepComponent from "./ProgressStepComponent";
-
-
-const PADDING_SIZE = '100px';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -28,12 +33,12 @@ const Progress = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: ${PADDING_SIZE} ${PADDING_SIZE} 0;  
+  padding: ${PROGRESS_WRAPPER_PADDING_SIZE} ${PROGRESS_WRAPPER_PADDING_SIZE} 0;  
 `;
 
 const LinkBettweenSteps = styled.div`
-  width: 100px;
-  height: 10px;
+  width: ${LINK_BETTWEEN_STEPS_WIDTH};
+  height: ${LINK_BETTWEEN_STEPS_HEIGHT};
   background-color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT}
 `;
 
@@ -44,9 +49,8 @@ const Step = styled.div`
 
 const Point = styled.div`
   position: relative;
-  width: 23px;
-  height: 10px;
-  background-color: black;
+  width: ${POINT_WIDTH};
+  height: ${POINT_HEIGHT};
 `;
 
 const tasks = [
