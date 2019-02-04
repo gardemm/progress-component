@@ -2,6 +2,7 @@ import React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import ProgressComponent from './components/ProgressComponent'
 
+
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
     width: 100%;
