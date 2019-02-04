@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react'
 import styled from 'styled-components'
-import { createGlobalStyle } from 'styled-components'
 import {
   COLOR_ACTIVE,
   COLOR_DEFAULT,
@@ -10,23 +9,6 @@ import {
 } from "./ProgressConstants";
 import ProgressStepComponent from "./ProgressStepComponent";
 import tasks from './tasks';
-
-const GlobalStyle = createGlobalStyle`
-  html, body, #root {
-    width: 100%;
-    height: 100%;
-  }
-  
-  body {
-    margin: 0;
-  }
-  
-  #root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;
 
 const Progress = styled.div`
   display: flex;
@@ -61,7 +43,6 @@ class ProgressComponent extends React.Component {
 
     return (
       <Progress>
-        <GlobalStyle />
         {steps}
       </Progress>
     )
