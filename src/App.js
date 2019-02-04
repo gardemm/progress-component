@@ -1,6 +1,6 @@
-import React from "react";
-import ProgressComponent from "./components/ProgressComponent";
-import {createGlobalStyle} from "styled-components";
+import React from 'react'
+import { createGlobalStyle } from 'styled-components'
+import ProgressComponent from './components/ProgressComponent'
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -17,17 +17,16 @@ const GlobalStyle = createGlobalStyle`
     justify-content: center;
     align-items: center;
   }
-`;
+`
 
 
-class App extends React.Component {
-  render () {
+function App() {
     return (
-      <div>
-        <GlobalStyle />
-        <ProgressComponent />
-      </div>)
-  }
+        <div>
+            <GlobalStyle />
+            <ProgressComponent />
+        </div>
+    )
 }
 
 export default App
