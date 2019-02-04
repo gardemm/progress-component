@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import {COLOR_ACTIVE, COLOR_DEFAULT} from "./PropgressContants";
+import {COLOR_ACTIVE, COLOR_DEFAULT} from "./ProgressConstants";
 import ProgressStepComponent from "./ProgressStepComponent";
 
 
