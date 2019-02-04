@@ -9,6 +9,7 @@ import {
   TITLE_PADDING_BOTTOM
 } from "./ProgressConstants";
 
+
 const ProgressStep = styled.div`
   position: absolute;
   left: -166%;
@@ -42,6 +43,7 @@ const Point = styled.div`
   width: ${POINT_WIDTH};
   height: ${POINT_HEIGHT};
 `;
+
 
 export default (props) => {
   return (

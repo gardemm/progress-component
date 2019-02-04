@@ -10,6 +10,7 @@ import {
 import ProgressStepComponent from "./ProgressStepComponent";
 import tasks from './tasks';
 
+
 const Progress = styled.div`
   display: flex;
   justify-content: center;
@@ -22,6 +23,7 @@ const LinkBettweenSteps = styled.div`
   height: ${LINK_BETTWEEN_STEPS_HEIGHT};
   background-color: ${props => props.complete ? COLOR_ACTIVE : COLOR_DEFAULT}
 `;
+
 
 class ProgressComponent extends React.Component {
 
