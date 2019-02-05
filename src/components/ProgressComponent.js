@@ -24,7 +24,7 @@ const LinkBettweenSteps = styled.div`
 `
 
 
-function ProgressComponent({ tasks }) {
+function ProgressComponent({ tasks, onClick }) {
     const steps = []
     tasks.forEach((task, index) => {
         const linkBetweenSteps = (index > 0)
@@ -35,6 +35,8 @@ function ProgressComponent({ tasks }) {
                 <ProgressStepComponent
                     title={task.title}
                     complete={task.complete}
+                    taskId={task.id}
+                    onClick={onClick}
                 />
             </Fragment>,
         )
