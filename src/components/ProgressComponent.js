@@ -8,7 +8,6 @@ import {
     PROGRESS_WRAPPER_PADDING_SIZE,
 } from './ProgressConstants'
 import ProgressStepComponent from './ProgressStepComponent'
-import tasks from './tasks'
 
 
 const Progress = styled.div`
@@ -25,7 +24,7 @@ const LinkBettweenSteps = styled.div`
 `
 
 
-function ProgressComponent() {
+function ProgressComponent({ tasks }) {
     const steps = []
     tasks.forEach((task, index) => {
         const linkBetweenSteps = (index > 0)
