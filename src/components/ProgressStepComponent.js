@@ -7,7 +7,7 @@ import {
     STATUS_CIRCLE_WIDTH,
     TITLE_FONT_SIZE,
     TITLE_PADDING_BOTTOM,
-} from './ProgressConstants'
+} from '../constants/components/progressConstants'
 
 
 const ProgressStep = styled.div`

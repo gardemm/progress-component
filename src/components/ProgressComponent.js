@@ -6,7 +6,7 @@ import {
     LINK_BETTWEEN_STEPS_HEIGHT,
     LINK_BETTWEEN_STEPS_WIDTH,
     PROGRESS_WRAPPER_PADDING_SIZE,
-} from './ProgressConstants'
+} from '../constants/components/progressConstants'
 import ProgressStepComponent from './ProgressStepComponent'
 
 
