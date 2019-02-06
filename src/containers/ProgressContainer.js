@@ -20,7 +20,6 @@ class ProgressContainer extends React.PureComponent {
 
     render() {
         const { tasks } = this.props
-        console.log(tasks.list)
         return (<ProgressComponent tasksList={tasks.list} onClick={this.toggleTask} />)
     }
 }

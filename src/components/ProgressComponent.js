@@ -39,7 +39,6 @@ function ProgressComponent({ tasksList, onClick }) {
             </Fragment>,
         )
     })
-    console.log('render')
     return (
         <Progress>
             {steps}

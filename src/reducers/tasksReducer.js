@@ -1,7 +1,7 @@
 import { createReducer } from '../helpers/reduxHelper'
-import { TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
+import { ADD_TASK, TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
 
-const tasksInitialState = {
+export const tasksInitialState = {
     list: [
         {
             id: 1,
@@ -35,6 +35,10 @@ export default createReducer({
     initialState: tasksInitialState,
     actions: {
         [TOGGLE_TASK]: (state, payload) => ({
+            ...state,
+            list: payload.list,
+        }),
+        [ADD_TASK]: (state, payload) => ({
             ...state,
             list: payload.list,
         }),
