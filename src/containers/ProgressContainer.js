@@ -1,17 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ProgressComponent from '../components/ProgressComponent'
+import { toggleTaskAction } from '../actions/tasksActions'
 
 
-function mapStateToProps(state) {
-    return {
-        tasks: state.tasks,
-    }
-}
+const mapStateToProps = state => ({
+    tasks: state.tasks,
+})
+
+const mapDispatchToProps = dispatch => ({
+    toggleTask: (task) => dispatch(toggleTaskAction(task)),
+})
 
 class ProgressContainer extends React.Component {
-    toggleTask = (id) => (e) => {
-        console.log(id, e)
+    toggleTask = (id) => () => {
+        const { toggleTask } = this.props
+        toggleTask(id)
     }
 
     render() {
@@ -21,4 +25,4 @@ class ProgressContainer extends React.Component {
 }
 
 
-export default connect(mapStateToProps)(ProgressContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ProgressContainer)
