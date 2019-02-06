@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, createStore, compose } from 'redux'
 import { createGlobalStyle } from 'styled-components'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
@@ -24,9 +24,11 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
-
+const store = createStore(rootReducer, composeEnhancers(
+    applyMiddleware(thunk),
+))
 
 function App() {
     return (
