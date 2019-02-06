@@ -14,18 +14,21 @@ describe('tasks reducer', () => {
 
 describe('tasks actions', () => {
     it('ADD_TASKS should add new task in the end of task list', () => {
-        const tasksMockList = tasksInitialState.list.splice(0, 2)
+        const tasksMockList = []
+
         const newTaskName = 'new task'
 
         const newTask = {
-            id: tasksMockList[tasksMockList.length - 1].id + 1,
+            id: tasksMockList.length + 1,
             title: newTaskName,
             complete: false,
         }
+
         const resultState = { tasks: { list: tasksMockList.concat(newTask) } }
 
         const store = mockStore({ tasks: { list: tasksMockList } })
         store.dispatch(addTaskAction(newTaskName))
+
         setTimeout(() => expect(store.getState()).toEqual(resultState))
     })
 })

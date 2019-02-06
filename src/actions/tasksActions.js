@@ -17,7 +17,7 @@ export const addTaskAction = (taskTitle) => (dispatch, getState) => {
     const { tasks: { list } } = getState()
 
     const task = {
-        id: list[list.length - 1].id + 1,
+        id: list.length + 1,
         title: taskTitle,
         complete: false,
     }
