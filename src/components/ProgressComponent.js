@@ -24,9 +24,9 @@ const LinkBettweenSteps = styled.div`
 `
 
 
-function ProgressComponent({ tasks, onClick }) {
+function ProgressComponent({ tasksList, onClick }) {
     const steps = []
-    tasks.forEach((task, index) => {
+    tasksList.forEach((task, index) => {
         const linkBetweenSteps = (index > 0)
             ? <LinkBettweenSteps complete={task.complete} /> : null
         steps.push(

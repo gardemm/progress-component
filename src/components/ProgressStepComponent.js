@@ -51,7 +51,7 @@ export default ({
     <Point>
         <ProgressStep>
             <Title complete={task.complete}>{task.title}</Title>
-            <StatusCircle complete={task.complete} onClick={onClick(task)} />
+            <StatusCircle complete={task.complete} onClick={onClick(task.id)} />
         </ProgressStep>
     </Point>
 )
