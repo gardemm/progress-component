@@ -2,7 +2,6 @@ import { TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
 import { createAction } from '../helpers/reduxHelper'
 
 export const toggleTaskAction = (taskId) => (dispatch, getState) => {
-    // noinspection JSAnnotator
     const { tasks: { list } } = getState()
 
     const newTaskList = list.map(task => ((task.id === taskId)
