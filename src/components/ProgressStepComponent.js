@@ -20,6 +20,7 @@ const ProgressStep = styled.div`
   align-items: center;
   z-index: 2;
   width: ${LINK_BETTWEEN_STEPS_WIDTH};
+  cursor: pointer;
 `
 
 const Title = styled.div`
@@ -36,7 +37,6 @@ const StatusCircle = styled.div`
   background-color: white;
   width: ${STATUS_CIRCLE_WIDTH};
   height: ${STATUS_CIRCLE_WIDTH}; 
-  cursor: pointer;
 `
 
 const Point = styled.div`
@@ -50,9 +50,9 @@ export default ({
     task, onClick,
 }) => (
     <Point>
-        <ProgressStep>
+        <ProgressStep onClick={onClick(task.id)}>
             <Title complete={task.complete}>{task.title}</Title>
-            <StatusCircle complete={task.complete} onClick={onClick(task.id)} />
+            <StatusCircle complete={task.complete} />
         </ProgressStep>
     </Point>
 )
