@@ -33,9 +33,7 @@ function ProgressComponent({ tasks, onClick }) {
             <Fragment key={index.toString()}>
                 {linkBetweenSteps}
                 <ProgressStepComponent
-                    title={task.title}
-                    complete={task.complete}
-                    taskId={task.id}
+                    task={task}
                     onClick={onClick}
                 />
             </Fragment>,

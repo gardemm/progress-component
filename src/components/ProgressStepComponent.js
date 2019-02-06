@@ -46,12 +46,12 @@ const Point = styled.div`
 
 
 export default ({
-    complete, title, taskId, onClick,
+    task, onClick,
 }) => (
     <Point>
         <ProgressStep>
-            <Title complete={complete}>{title}</Title>
-            <StatusCircle complete={complete} onClick={onClick(taskId)} />
+            <Title complete={task.complete}>{task.title}</Title>
+            <StatusCircle complete={task.complete} onClick={onClick(task)} />
         </ProgressStep>
     </Point>
 )

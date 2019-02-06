@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
+
 function App() {
     return (
         <Provider store={store}>
