@@ -48,11 +48,14 @@ const Point = styled.div`
 
 export default ({
     task, onClick,
-}) => (
-    <Point>
-        <ProgressStep onClick={onClick(task.id)}>
-            <Title complete={task.complete}>{task.title}</Title>
-            <StatusCircle complete={task.complete} />
-        </ProgressStep>
-    </Point>
-)
+}) => {
+    console.log('render')
+    return (
+        <Point>
+            <ProgressStep onClick={onClick(task.id)}>
+                <Title complete={task.complete}>{task.title}</Title>
+                <StatusCircle complete={task.complete} />
+            </ProgressStep>
+        </Point>
+    )
+}

@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
     toggleTask: (task) => dispatch(toggleTaskAction(task)),
 })
 
-class ProgressContainer extends React.Component {
+class ProgressContainer extends React.PureComponent {
     toggleTask = (id) => () => {
         const { toggleTask } = this.props
         toggleTask(id)
