@@ -36,6 +36,7 @@ const StatusCircle = styled.div`
   background-color: white;
   width: ${STATUS_CIRCLE_WIDTH};
   height: ${STATUS_CIRCLE_WIDTH}; 
+  cursor: pointer;
 `
 
 const Point = styled.div`
