@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ProgressComponent from '../components/ProgressComponent'
 import { toggleTaskAction } from '../actions/tasksActions'
+import ErrorBoundary from '../ErrorBoundary'
 
 
 const mapStateToProps = state => ({
@@ -20,7 +21,11 @@ class ProgressContainer extends React.PureComponent {
 
     render() {
         const { tasks } = this.props
-        return (<ProgressComponent tasksList={tasks.list} onClick={this.toggleTask} />)
+        return (
+            <ErrorBoundary>
+                <ProgressComponent tasksList={tasks.list} onClick={this.toggleTask} />
+            </ErrorBoundary>
+        )
     }
 }
 
