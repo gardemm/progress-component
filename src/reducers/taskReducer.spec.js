@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import reducer, { tasksInitialState } from './tasksReducer'
-import { addTaskAction } from '../actions/tasksActions'
+import { addTaskAction, deleteTaskAction } from '../actions/tasksActions'
 import type { taskType } from './tasksReducer'
 
 const middlewares = [thunk]
@@ -29,6 +29,26 @@ describe('tasks actions', () => {
 
         const store = mockStore({ tasks: { list: tasksMockList } })
         store.dispatch(addTaskAction(newTaskName))
+        setTimeout(() => expect(store.getState()).toEqual(resultState))
+    })
+
+    it('DELETE_TASKS should delete the task in task array', () => {
+        const tasksMockList: Array<taskType> = [{
+            id: 1,
+            title: 'one',
+            complete: false,
+        }, {
+            id: 2,
+            title: 'two',
+            complete: false,
+        }]
+
+        const deleteTaskId = 1
+
+        const resultState = { tasks: { list: tasksMockList.splice(1, 1) } }
+
+        const store = mockStore({ tasks: { list: tasksMockList } })
+        store.dispatch(deleteTaskAction(deleteTaskId))
         setTimeout(() => expect(store.getState()).toEqual(resultState))
     })
 })
