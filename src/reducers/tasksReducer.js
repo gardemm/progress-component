@@ -13,6 +13,7 @@ export type tasksInitialStateType = {
     hasError: boolean
 }
 
+
 export const tasksInitialState: tasksInitialStateType = {
     hasError: false,
     list: [
