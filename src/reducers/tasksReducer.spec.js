@@ -3,14 +3,10 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import reducer, { tasksInitialState } from './tasksReducer'
 import { addTaskAction, deleteTaskAction } from '../actions/tasksActions'
-import type { tasksInitialStateType, taskType } from './tasksReducer'
+import type { tasksStateType, taskType } from './tasksReducer'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
-
-type tasksStateType = {
-    tasks: tasksInitialStateType
-}
 
 describe('tasks reducer', () => {
     it('should return the initial state', () => {

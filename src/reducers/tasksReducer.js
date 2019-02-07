@@ -2,6 +2,7 @@
 import { createReducer, updateProp } from '../helpers/reduxHelper'
 import { ADD_TASK, DELETE_TASK, TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
 
+// Types
 export type taskType = {
     id: number,
     title: string,
@@ -13,7 +14,11 @@ export type tasksInitialStateType = {
     hasError: boolean
 }
 
+export type tasksStateType = {
+  tasks: tasksInitialStateType
+}
 
+// State
 export const tasksInitialState: tasksInitialStateType = {
     hasError: false,
     list: [
@@ -44,7 +49,6 @@ export const tasksInitialState: tasksInitialStateType = {
         },
     ],
 }
-
 
 export default createReducer({
     initialState: tasksInitialState,
