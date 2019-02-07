@@ -3,10 +3,14 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import reducer, { tasksInitialState } from './tasksReducer'
 import { addTaskAction, deleteTaskAction } from '../actions/tasksActions'
-import type { taskType } from './tasksReducer'
+import type { tasksInitialStateType, taskType } from './tasksReducer'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
+
+type tasksStateType = {
+    tasks: tasksInitialStateType
+}
 
 describe('tasks reducer', () => {
     it('should return the initial state', () => {
@@ -17,7 +21,6 @@ describe('tasks reducer', () => {
         // todo
     })
 })
-
 
 describe('tasks actions', () => {
     it('ADD_TASKS should add a new task at the end list', () => {
@@ -30,7 +33,12 @@ describe('tasks actions', () => {
             complete: false,
         }
 
-        const resultState = { tasks: { list: tasksMockList.concat(newTask) } }
+        const resultState: tasksStateType = {
+            tasks: {
+                list: tasksMockList.concat(newTask),
+                hasError: false,
+            },
+        }
 
         const store = mockStore({ tasks: { list: tasksMockList } })
         store.dispatch(addTaskAction(newTaskName))
@@ -50,7 +58,12 @@ describe('tasks actions', () => {
 
         const deleteTaskId = 1
 
-        const resultState = { tasks: { list: tasksMockList.splice(1, 1) } }
+        const resultState: tasksStateType = {
+            tasks: {
+                list: tasksMockList.splice(1, 1),
+                hasError: false,
+            },
+        }
 
         const store = mockStore({ tasks: { list: tasksMockList } })
         store.dispatch(deleteTaskAction(deleteTaskId))
