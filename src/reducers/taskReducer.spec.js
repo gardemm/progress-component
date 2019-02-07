@@ -2,6 +2,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import reducer, { tasksInitialState } from './tasksReducer'
 import { addTaskAction } from '../actions/tasksActions'
+import type { taskType } from './tasksReducer'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
@@ -12,13 +13,13 @@ describe('tasks reducer', () => {
     })
 })
 
+
 describe('tasks actions', () => {
     it('ADD_TASKS should add new task in the end of task list', () => {
-        const tasksMockList = []
-
+        const tasksMockList: Array<taskType> = []
         const newTaskName = 'new task'
 
-        const newTask = {
+        const newTask: taskType = {
             id: tasksMockList.length + 1,
             title: newTaskName,
             complete: false,
@@ -28,7 +29,13 @@ describe('tasks actions', () => {
 
         const store = mockStore({ tasks: { list: tasksMockList } })
         store.dispatch(addTaskAction(newTaskName))
-
         setTimeout(() => expect(store.getState()).toEqual(resultState))
     })
 })
+
+/*
+Number of steps is dynamic
+There's a minimum step of two and a maximum of five
+You can't jump over a step
+Write a simple test to check if the state has changed after click
+* */
