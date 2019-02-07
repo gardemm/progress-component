@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "flow-bin": "^0.92.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
@@ -14,6 +15,8 @@
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-jest": "^22.2.2",
+    "flow-typed": "^2.5.1",
+    "jest": "^24.1.0",
     "react-test-renderer": "^16.8.0",
     "redux-mock-store": "^1.5.3"
   },
@@ -21,7 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "flow": "flow"
   },
   "eslintConfig": {
     "extends": "react-app"

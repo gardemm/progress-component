@@ -1,18 +1,20 @@
+// @flow
 import { createReducer, updateProp } from '../helpers/reduxHelper'
 import { ADD_TASK, DELETE_TASK, TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
 
-
 export type taskType = {
-    id: Number,
-    title: String,
-    complete: Boolean,
+    id: number,
+    title: string,
+    complete: boolean,
 }
 
 export type tasksInitialStateType = {
-    list: Array<taskType>
+    list: Array<taskType>,
+    hasError: boolean
 }
 
 export const tasksInitialState: tasksInitialStateType = {
+    hasError: false,
     list: [
         {
             id: 1,

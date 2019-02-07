@@ -1,3 +1,4 @@
+// @flow
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import reducer, { tasksInitialState } from './tasksReducer'
@@ -11,11 +12,15 @@ describe('tasks reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual(tasksInitialState)
     })
+
+    it('There\'s a minimum step of two and a maximum of five', () => {
+        // todo
+    })
 })
 
 
 describe('tasks actions', () => {
-    it('ADD_TASKS should add new task in the end of task list', () => {
+    it('ADD_TASKS should add a new task at the end list', () => {
         const tasksMockList: Array<taskType> = []
         const newTaskName = 'new task'
 
@@ -32,7 +37,7 @@ describe('tasks actions', () => {
         setTimeout(() => expect(store.getState()).toEqual(resultState))
     })
 
-    it('DELETE_TASKS should delete the task in task array', () => {
+    it('DELETE_TASKS should delete the task by id from list', () => {
         const tasksMockList: Array<taskType> = [{
             id: 1,
             title: 'one',
