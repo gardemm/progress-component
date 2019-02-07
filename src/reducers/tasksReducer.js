@@ -1,5 +1,5 @@
-import { createReducer } from '../helpers/reduxHelper'
-import { ADD_TASK, TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
+import { createReducer, updateProp } from '../helpers/reduxHelper'
+import { ADD_TASK, DELETE_TASK, TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
 
 
 export type taskType = {
@@ -46,13 +46,8 @@ export const tasksInitialState: tasksInitialStateType = {
 export default createReducer({
     initialState: tasksInitialState,
     actions: {
-        [TOGGLE_TASK]: (state, payload) => ({
-            ...state,
-            list: payload.list,
-        }),
-        [ADD_TASK]: (state, payload) => ({
-            ...state,
-            list: payload.list,
-        }),
+        [TOGGLE_TASK]: updateProp('list'),
+        [ADD_TASK]: updateProp('list'),
+        [DELETE_TASK]: updateProp('list'),
     },
 })

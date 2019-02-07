@@ -6,3 +6,13 @@ export const createReducer = ({ initialState = {}, actions = {} }) =>
         if (!actions[type]) return state
         return actions[type](state, payload)
     }
+
+export const toggleProp = (name) => (state) => ({
+    ...state,
+    [name]: !state[name],
+})
+
+export const updateProp = (name) => (state, payload) => ({
+    ...state,
+    [name]: payload[name],
+})

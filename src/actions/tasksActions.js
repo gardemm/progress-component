@@ -1,4 +1,4 @@
-import { ADD_TASK, TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
+import { ADD_TASK, DELETE_TASK, TOGGLE_TASK } from '../constants/actions/tasksActionsNames'
 import { createAction } from '../helpers/reduxHelper'
 
 export const toggleTaskAction = (taskId) => (dispatch, getState) => {
@@ -25,6 +25,17 @@ export const addTaskAction = (taskTitle) => (dispatch, getState) => {
     const newTaskList = list.concat(task)
 
     dispatch(createAction(ADD_TASK)({
+        list: newTaskList,
+    }))
+}
+
+
+export const deleteTaskAction = (taskId) => (dispatch, getState) => {
+    const { tasks: { list } } = getState()
+
+    const newTaskList = list.filter(task => task.id !== taskId)
+
+    dispatch(createAction(DELETE_TASK)({
         list: newTaskList,
     }))
 }
