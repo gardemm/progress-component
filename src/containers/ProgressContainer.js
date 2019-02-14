@@ -7,6 +7,7 @@ import ErrorBoundary from '../ErrorBoundary'
 
 const mapStateToProps = state => ({
     tasks: state.tasks,
+    hasError: state.hasError,
 })
 
 const mapDispatchToProps = dispatch => ({
