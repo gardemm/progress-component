@@ -8,15 +8,26 @@ import type { tasksStateType, taskType } from './tasksReducer'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
+expect.extend({
+    toBeWithinRange(received, floor, ceiling = '') {
+        const pass = received >= floor && received <= ceiling
+        if (pass) {
+            return {
+                message: () => `expected ${received} not to be within range ${floor} - ${ceiling}`,
+                pass: true,
+            }
+        }
+        return {
+            message: () => `expected ${received} to be within range ${floor} - ${ceiling}`,
+            pass: false,
+        }
+    },
+})
+
 // reducer
 describe('tasks reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual(tasksInitialState)
-    })
-
-
-    it('There\'s a minimum step of two and a maximum of five', () => {
-        // todo
     })
 })
 
@@ -64,6 +75,14 @@ describe('tasks actions', () => {
         setTimeout(() => expect(store.getState()).toEqual(resultState))
     })
 })
+
+describe('There\'s a minimum step of two and a maximum of five', () => {
+    it('The initialState task list count is between two and five tasks', () => {
+        // $FlowFixMe
+        expect(tasksInitialState.list.length).toBeWithinRange(2, 5, 1)
+    })
+})
+
 
 /*
 Number of steps is dynamic
