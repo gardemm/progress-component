@@ -1,6 +1,9 @@
 // @flow
+import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
+import Enzyme, { shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 import reducer, { tasksInitialState } from './tasksReducer'
 import { addTaskAction, deleteTaskAction } from '../actions/tasksActions'
 import type { tasksStateType, taskType } from './tasksReducer'
@@ -9,12 +12,17 @@ import expect from '../helpers/expect'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
+// config for enzyme
+Enzyme.configure({ adapter: new Adapter() })
+
+
 // reducer
 describe('tasks reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual(tasksInitialState)
     })
 })
+
 
 // actions
 describe('tasks actions', () => {
@@ -61,6 +69,7 @@ describe('tasks actions', () => {
     })
 })
 
+
 describe('There\'s a minimum step of two and a maximum of five', () => {
     it('The initialState task list count is between two and five tasks', () => {
         // $FlowFixMe
@@ -69,9 +78,23 @@ describe('There\'s a minimum step of two and a maximum of five', () => {
 })
 
 
+describe('You can\'t jump over a step', () => {
+    it('Test click event', () => {
+        const mockCallBack = jest.fn()
+
+        const button = shallow((<button type="button" onClick={mockCallBack}>Ok!</button>))
+        button.find('button').simulate('click')
+        expect(mockCallBack.mock.calls.length).toEqual(1)
+    })
+
+    // it('should activate only next step by a click or do nothing', () => {
+    //     expect(true).toBe(false)
+    //     // expect(store.getState()).toEqual(resultState)
+    // })
+})
+
+
 /*
-Number of steps is dynamic
-There's a minimum step of two and a maximum of five
 You can't jump over a step
 Write a simple test to check if the state has changed after click
 * */
