@@ -5,8 +5,8 @@ import thunk from 'redux-thunk'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import reducer, { tasksInitialState } from './tasksReducer'
-import { addTaskAction, deleteTaskAction } from '../actions/tasksActions'
-import type { tasksStateType, taskType } from './tasksReducer'
+import { addTaskAction, deleteTaskAction, toggleTaskAction } from '../actions/tasksActions'
+import type { taskType } from './tasksReducer'
 import expect from '../helpers/expect'
 
 const middlewares = [thunk]
@@ -23,10 +23,9 @@ describe('tasks reducer', () => {
     })
 })
 
-
 // actions
 describe('tasks actions', () => {
-    it('ADD_TASKS: should add a new task at the end of list', () => {
+    it('ADD_TASKS: should add a new task at the end of list', async () => {
         const tasksList: Array<taskType> = []
         const newTaskName = 'new task'
         const newTask: taskType = {
@@ -34,19 +33,14 @@ describe('tasks actions', () => {
             title: newTaskName,
             complete: false,
         }
-        const resultState: tasksStateType = {
-            tasks: {
-                list: tasksList.concat(newTask),
-                hasError: false,
-            },
-        }
+        const resultList: Array<taskType> = tasksList.concat(newTask)
         const store = mockStore({ tasks: { list: tasksList } })
-        store.dispatch(addTaskAction(newTaskName))
-        setTimeout(() => expect(store.getState()).toEqual(resultState))
+        const result = await store.dispatch(addTaskAction(newTaskName))
+        expect(result.payload.list).toEqual(resultList)
     })
 
 
-    it('DELETE_TASKS: should delete the task by id from list', () => {
+    it('DELETE_TASKS: should delete the task by id from list', async () => {
         const tasksList: Array<taskType> = [{
             id: 1,
             title: 'one',
@@ -55,17 +49,52 @@ describe('tasks actions', () => {
             id: 2,
             title: 'two',
             complete: false,
+        },
+        {
+            id: 3,
+            title: 'three',
+            complete: false,
         }]
-        const deleteTaskId = 1
-        const resultState: tasksStateType = {
+        const resultList = [].concat(tasksList.slice(0, 1), tasksList.slice(2, 3))
+        const store = mockStore({
             tasks: {
-                list: tasksList.splice(1, 1),
                 hasError: false,
+                list: tasksList,
             },
-        }
+        })
+        const result = await store.dispatch(deleteTaskAction(2))
+        expect(result.payload.list).toEqual(resultList)
+    })
+
+    it('TOGGLE_TASK: should activate only next task, or disable previous task', async () => {
+        const tasksList: Array<taskType> = tasksInitialState.list.slice()
+
+        expect(tasksList[0].complete).toEqual(true)
+        expect(tasksList[1].complete).toEqual(true)
+        expect(tasksList[2].complete).toEqual(false)
+        expect(tasksList[3].complete).toEqual(false)
+        expect(tasksList[4].complete).toEqual(false)
+
         const store = mockStore({ tasks: { list: tasksList } })
-        store.dispatch(deleteTaskAction(deleteTaskId))
-        setTimeout(() => expect(store.getState()).toEqual(resultState))
+
+        const toggle1 = await store.dispatch(toggleTaskAction(tasksList[0].id))
+        expect(toggle1.payload.list[0].complete).toEqual(true)
+
+        const toggle2 = await store.dispatch(toggleTaskAction(tasksList[1].id))
+        console.log('toggle2', toggle2)
+        expect(toggle2.payload.list[1].complete).toEqual(false)
+
+        const toggle2again = await store.dispatch(toggleTaskAction(tasksList[1].id))
+        expect(toggle2again.payload.list[1].complete).toEqual(true)
+
+        const toggleLastItem = await store.dispatch(toggleTaskAction(tasksList[4].id))
+        expect(toggleLastItem.payload.list[4].complete).toEqual(false)
+
+        const toggleOutOfRange = await store.dispatch(toggleTaskAction(999))
+        expect(toggleOutOfRange.payload.list).toEqual(store.getState().tasks.list)
+
+        const toggleUndefined = await store.dispatch(toggleTaskAction(undefined))
+        expect(toggleUndefined.payload.list).toEqual(store.getState().tasks.list)
     })
 })
 
@@ -81,16 +110,10 @@ describe('There\'s a minimum step of two and a maximum of five', () => {
 describe('You can\'t jump over a step', () => {
     it('Test click event', () => {
         const mockCallBack = jest.fn()
-
         const button = shallow((<button type="button" onClick={mockCallBack}>Ok!</button>))
         button.find('button').simulate('click')
         expect(mockCallBack.mock.calls.length).toEqual(1)
     })
-
-    // it('should activate only next step by a click or do nothing', () => {
-    //     expect(true).toBe(false)
-    //     // expect(store.getState()).toEqual(resultState)
-    // })
 })
 
 

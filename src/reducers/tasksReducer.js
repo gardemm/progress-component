@@ -14,7 +14,7 @@ export type tasksInitialStateType = {
     hasError: boolean
 }
 
-export type tasksStateType = {
+export type tasksImportedStateType = {
   tasks: tasksInitialStateType
 }
 
