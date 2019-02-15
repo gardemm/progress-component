@@ -81,7 +81,6 @@ describe('tasks actions', () => {
         expect(toggle1.payload.list[0].complete).toEqual(true)
 
         const toggle2 = await store.dispatch(toggleTaskAction(tasksList[1].id))
-        console.log('toggle2', toggle2)
         expect(toggle2.payload.list[1].complete).toEqual(false)
 
         const toggle2again = await store.dispatch(toggleTaskAction(tasksList[1].id))
