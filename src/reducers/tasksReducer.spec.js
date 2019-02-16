@@ -8,6 +8,7 @@ import reducer, { tasksInitialState } from './tasksReducer'
 import { addTaskAction, deleteTaskAction, toggleTaskAction } from '../actions/tasksActions'
 import type { taskType } from './tasksReducer'
 import expect from '../helpers/expect'
+import ProgressStepComponent from '../components/ProgressStepComponent'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
@@ -66,7 +67,7 @@ describe('tasks actions', () => {
         expect(result.payload.list).toEqual(resultList)
     })
 
-    it('TOGGLE_TASK: should activate only next task, or disable previous task', async () => {
+    it('TOGGLE_TASK: should activate only next task, or disable all previous tasks', async () => {
         const tasksList: Array<taskType> = tasksInitialState.list.slice()
 
         expect(tasksList[0].complete).toEqual(true)
@@ -78,10 +79,11 @@ describe('tasks actions', () => {
         const store = mockStore({ tasks: { list: tasksList } })
 
         const toggle1 = await store.dispatch(toggleTaskAction(tasksList[0].id))
-        expect(toggle1.payload.list[0].complete).toEqual(true)
+        expect(toggle1.payload.list[0].complete).toEqual(false)
+        expect(toggle1.payload.list[1].complete).toEqual(false)
 
-        const toggle2 = await store.dispatch(toggleTaskAction(tasksList[1].id))
-        expect(toggle2.payload.list[1].complete).toEqual(false)
+        const toggle2 = await store.dispatch(toggleTaskAction(tasksList[0].id))
+        expect(toggle2.payload.list[0].complete).toEqual(true)
 
         const toggle2again = await store.dispatch(toggleTaskAction(tasksList[1].id))
         expect(toggle2again.payload.list[1].complete).toEqual(true)
@@ -106,14 +108,39 @@ describe('There\'s a minimum step of two and a maximum of five', () => {
 })
 
 
-describe('You can\'t jump over a step', () => {
-    it('Test click event', () => {
-        const mockCallBack = jest.fn()
-        const button = shallow((<button type="button" onClick={mockCallBack}>Ok!</button>))
-        button.find('button').simulate('click')
-        expect(mockCallBack.mock.calls.length).toEqual(1)
-    })
-})
+// describe('The state has changed after click', () => {
+//     // При клике на ProgressStepComponent -> ProgressStep (в случае, когда он подходит под условия)
+//     // state изменится
+//     it('Click to the active ProgressStep in conditions will change the state', async () => {
+//         const tasksList: Array<taskType> = [
+//             {
+//                 id: 1,
+//                 title: 'task 1',
+//                 complete: true,
+//             },
+//             {
+//                 id: 2,
+//                 title: 'task 2',
+//                 complete: false,
+//             },
+//             {
+//                 id: 3,
+//                 title: 'task 2',
+//                 complete: false,
+//             },
+//         ]
+//
+//         const store = mockStore({ tasks: { list: tasksList } })
+//
+//
+//         const mockCallBack = store.dispatch(toggleTaskAction())
+//
+//         const ProgressStep = shallow((<ProgressStepComponent task={tasksList[2]} onCLick={mockCallBack} />))
+//         expect(ProgressStep.find('ProgressStep')).to.have.lengthOf(1)
+//         // ProgressStep.find('ProgressStep').simulate('click')
+//         // expect(mockCallBack.mock.calls.length).toEqual(1)
+//     })
+// })
 
 
 /*
