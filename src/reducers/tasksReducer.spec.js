@@ -1,21 +1,13 @@
 // @flow
-import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import Enzyme, { shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import reducer, { tasksInitialState } from './tasksReducer'
 import { addTaskAction, deleteTaskAction, toggleTaskAction } from '../actions/tasksActions'
 import type { taskType } from './tasksReducer'
 import expect from '../helpers/expect'
-import ProgressStepComponent from '../components/ProgressStepComponent'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
-
-// config for enzyme
-Enzyme.configure({ adapter: new Adapter() })
-
 
 // reducer
 describe('tasks reducer', () => {
@@ -106,41 +98,6 @@ describe('There\'s a minimum step of two and a maximum of five', () => {
         expect(tasksInitialState.list.length).toBeWithinRange(2, 5, 1)
     })
 })
-
-
-// describe('The state has changed after click', () => {
-//     // При клике на ProgressStepComponent -> ProgressStep (в случае, когда он подходит под условия)
-//     // state изменится
-//     it('Click to the active ProgressStep in conditions will change the state', async () => {
-//         const tasksList: Array<taskType> = [
-//             {
-//                 id: 1,
-//                 title: 'task 1',
-//                 complete: true,
-//             },
-//             {
-//                 id: 2,
-//                 title: 'task 2',
-//                 complete: false,
-//             },
-//             {
-//                 id: 3,
-//                 title: 'task 2',
-//                 complete: false,
-//             },
-//         ]
-//
-//         const store = mockStore({ tasks: { list: tasksList } })
-//
-//
-//         const mockCallBack = store.dispatch(toggleTaskAction())
-//
-//         const ProgressStep = shallow((<ProgressStepComponent task={tasksList[2]} onCLick={mockCallBack} />))
-//         expect(ProgressStep.find('ProgressStep')).to.have.lengthOf(1)
-//         // ProgressStep.find('ProgressStep').simulate('click')
-//         // expect(mockCallBack.mock.calls.length).toEqual(1)
-//     })
-// })
 
 
 /*

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {
     COLOR_ACTIVE,
     COLOR_DEFAULT,
-    LINK_BETTWEEN_STEPS_WIDTH, POINT_HEIGHT, POINT_WIDTH,
+    LINK_BETTWEEN_STEPS_WIDTH,
     STATUS_CIRCLE_WIDTH,
     TITLE_FONT_SIZE,
     TITLE_PADDING_BOTTOM,
@@ -39,20 +39,13 @@ const StatusCircle = styled.div`
   height: ${STATUS_CIRCLE_WIDTH}; 
 `
 
-const Point = styled.div`
-  position: relative;
-  width: ${POINT_WIDTH};
-  height: ${POINT_HEIGHT};
-`
-
 
 export default ({
     task, onClick,
 }) => (
-    <Point>
-        <ProgressStep onClick={onClick(task.id)}>
-            <Title complete={task.complete}>{task.title}</Title>
-            <StatusCircle complete={task.complete} />
-        </ProgressStep>
-    </Point>
+    <ProgressStep className="progress-step" onClick={onClick(task.id)}>
+        <Title complete={task.complete}>{task.title}</Title>
+        <StatusCircle complete={task.complete} />
+    </ProgressStep>
+
 )

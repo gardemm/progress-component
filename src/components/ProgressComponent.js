@@ -7,7 +7,7 @@ import {
     LINK_BETTWEEN_STEPS_WIDTH,
     PROGRESS_WRAPPER_PADDING_SIZE,
 } from '../constants/components/progressConstants'
-import ProgressStepComponent from './ProgressStepComponent'
+import ProgressPointComponent from './ProgressPointComponent'
 
 
 const Progress = styled.div`
@@ -32,7 +32,7 @@ function ProgressComponent({ tasksList, onClick }) {
         steps.push(
             <Fragment key={index.toString()}>
                 {linkBetweenSteps}
-                <ProgressStepComponent
+                <ProgressPointComponent
                     task={task}
                     onClick={onClick}
                 />
